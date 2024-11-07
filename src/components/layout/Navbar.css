@@ -1,0 +1,7 @@
+.desktop-navbar li {
+  @apply mr-4 h-full;
+}
+
+.desktop-navbar li:hover {
+  @apply border-b-2 border-primary;
+}

@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: #2d2d2d;
+}
+
+/* BTN */
+.btn {
+  @apply py-[5px] px-4 rounded-lg flex transition-colors;
+}
+
+.btn-primary {
+  @apply bg-primary text-white font-bold;
+}
+
+.btn-primary:hover {
+  @apply bg-primaryHover;
+}
+
+.btn-white {
+  @apply border border-grayIndeed font-bold text-primary;
+}
+
+.btn-full {
+  @apply w-full flex justify-center py-[9px];
+}
+
+.btn-white:hover {
+  @apply border-primary bg-[#eef1fe];
+}
+
+.auth-card {
+  @apply max-w-[430px] mx-auto rounded border border-grayIndeed p-6 w-full;
+}
+
+/* FORM */
+.form-field {
+  @apply w-full py-[9px] px-3 border border-[#2d2d2d] rounded-lg mt-2 active:border-primary;
+}
+
+.form-control span {
+  @apply font-bold;
+}
+
+.form-control span i {
+  @apply text-red-500 !text-sm;
+}
+
+.form-control .helper {
+  @apply text-sm;
+}
