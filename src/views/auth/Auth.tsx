@@ -1,12 +1,12 @@
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
 
 import Logo from '../../components/base/Logo'
 import SetEmail from './SetEmail'
 import SelectUserType from './SelectUserType'
 import SetPassword from './SetPassword'
-import { apiRequest, api } from '../../api/apiRequest'
-import { setUser } from '../../store/slices/authSlice'
+import { apiRequest } from '../../api/apiRequest'
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../hooks/useAuth'
 
 export enum FormSteps {
   SET_EMAIL = 'setEmail',
@@ -20,7 +20,8 @@ export default function Signup() {
   const [emailIsRegistered, setEmailIsRegistered] = useState<boolean>()
   const [role, setRole] = useState<string>('')
 
-  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const { login, signup } = useAuth()
 
   async function changeStep(step: FormSteps, payload: any) {
     switch (step) {
@@ -43,46 +44,30 @@ export default function Signup() {
 
       case FormSteps.SET_PASSWORD:
         if (emailIsRegistered) {
-          login(email, payload.password)
+          await login(email, payload.password)
         } else {
-          signup(email, payload.password, role)
+          await signup(email, payload.password, role)
         }
 
+        navigate('/')
         break
     }
   }
 
-  async function signup(email: string, password: string, role: string) {
-    const { data } = await apiRequest('POST', '/auth/signup', {
-      email,
-      role,
-      password,
-    })
-
-    // TODO: implement custom response in axios req
-
-    api.defaults.headers.common['Authorization'] = `Bearer ${data.token}`
-    dispatch(setUser(data))
-    console.log(data)
-  }
-
-  async function login(email: string, password: string) {
-    const { data } = await apiRequest('POST', '/auth/login', {
-      email,
-      password,
-    })
-
-    api.defaults.headers.common['Authorization'] = `Bearer ${data.token}`
-    dispatch(setUser(data))
-    console.log(data)
-  }
-
   async function checkIfEmailIsRegistered(email: string): Promise<boolean> {
-    const { data } = await apiRequest('POST', '/auth/check-email-registered', {
+    const {
+      data: emailIsRegistered,
+      error,
+      message,
+    } = await apiRequest('POST', '/auth/check-email-registered', {
       email,
     })
 
-    return data.emailIsRegistered
+    if (error) {
+      message?.display()
+    }
+
+    return emailIsRegistered
   }
 
   return (
