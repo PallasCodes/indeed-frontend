@@ -4,6 +4,8 @@ import JobCard from '../components/JobCard'
 import { JobPreview } from '../types/jobPreview.interface'
 import { apiRequest } from '../api/apiRequest'
 import { useState } from 'react'
+import JobFullInfo from '../components/JobFullInfo'
+import { useGetJob } from '../hooks/useGetJob'
 
 // const jobs: JobPreview[] = [
 //   {
@@ -140,12 +142,18 @@ import { useState } from 'react'
 
 export default function JobsListing() {
   const [jobs, setJobs] = useState<JobPreview[]>([])
+  const [selectedJob, setSelectedJob] = useState(null)
 
   async function findJobs(location?: string, title?: string) {
     const { data } = await apiRequest('GET', '/jobs', null, {
       params: { location, title },
     })
     setJobs(data.jobs)
+  }
+
+  async function handleJobCardClick(jobId: string) {
+    const { data, error } = await apiRequest('GET', `/jobs/${jobId}`)
+    setSelectedJob(data.job)
   }
 
   return (
@@ -160,11 +168,21 @@ export default function JobsListing() {
         <span> - Postúlate a miles de empleos desde cualquier dispositivo</span>
       </div>
 
-      <div className="max-w-[1352px] mx-auto mt-4">
-        {jobs &&
-          jobs.map((job: JobPreview) => (
-            <JobCard job={job} key={job.id} className="mb-2" />
-          ))}
+      <div className="max-w-[1352px] mx-auto mt-4 px-4 flex">
+        <div className="flex-grow-0 flex-shrink-0">
+          {jobs &&
+            jobs.map((job: JobPreview) => (
+              <JobCard
+                job={job}
+                key={job.id}
+                className="mb-3"
+                handleJobCardClick={handleJobCardClick}
+              />
+            ))}
+        </div>
+        <div className="ml-6 flex-grow flex-shrink-0">
+          {selectedJob && <JobFullInfo job={selectedJob} />}
+        </div>
       </div>
     </>
   )

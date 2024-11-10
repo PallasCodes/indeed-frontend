@@ -29,7 +29,7 @@ export default function JobSearchBar({
         <input
           type="text"
           placeholder="Título del empleo, palabras clave o empresa"
-          className="h-[3.75rem]"
+          className="h-[3.75rem] outline-none"
           onChange={(e) => setTitle(e.target.value)}
           value={title}
         />
@@ -42,7 +42,7 @@ export default function JobSearchBar({
         <input
           type="text"
           placeholder="Ciudad, región, código postal o trabajo remoto"
-          className="h-full"
+          className="h-[3.75rem] outline-none"
           onChange={(e) => setLocation(e.target.value)}
           value={location}
         />

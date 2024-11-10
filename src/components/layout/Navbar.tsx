@@ -6,10 +6,12 @@ import Hamburguer from '../icons/Hamburguer'
 import Logo from '../base/Logo'
 import './Navbar.css'
 import { RootState } from '../../store'
+import { useAuth } from '../../hooks/useAuth'
 
 // todo fix desktop navbar styles
 
 export default function Navbar() {
+  const { logout } = useAuth()
   const user = useSelector((state: RootState) => state.auth.user)
 
   return (
@@ -40,6 +42,19 @@ export default function Navbar() {
           </Link>
           <div className="w-[1px] bg-gray-300 mx-5 h-6"></div>
           <Link to="/auth">Empresas/Publicar empleos</Link>
+        </div>
+      )}
+      {user && (
+        <div className="flex">
+          <button
+            onClick={logout}
+            className="text-primary font-bold text-sm mr-8"
+          >
+            Cerrar sesión
+          </button>
+          <Link className="text-primary font-bold text-sm" to={'/profile'}>
+            Perfil
+          </Link>
         </div>
       )}
 
