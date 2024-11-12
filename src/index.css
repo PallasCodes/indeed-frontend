@@ -12,11 +12,19 @@ body {
 
 /* BTN */
 .btn {
-  @apply py-[5px] px-4 rounded-lg flex transition-colors;
+  @apply py-[5px] px-4 rounded-lg flex transition-colors font-bold;
+}
+
+.btn-lg {
+  @apply !py-[9px];
+}
+
+.btn-text {
+  @apply bg-grayIndeed;
 }
 
 .btn-primary {
-  @apply bg-primary text-white font-bold;
+  @apply bg-primary text-white;
 }
 
 .btn-primary:hover {
@@ -24,7 +32,7 @@ body {
 }
 
 .btn-white {
-  @apply border border-grayIndeed font-bold text-primary;
+  @apply border border-grayIndeed text-primary;
 }
 
 .btn-full {
