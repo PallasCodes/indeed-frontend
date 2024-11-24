@@ -168,7 +168,7 @@ export default function JobsListing() {
         <span> - Postúlate a miles de empleos desde cualquier dispositivo</span>
       </div>
 
-      <div className="max-w-[1352px] mx-auto mt-4 px-4 flex">
+      <div className="!max-w-[1352px] mx-auto mt-4 px-4 flex">
         <div className="flex-grow-0 flex-shrink-0">
           {jobs &&
             jobs.map((job: JobPreview) => (
@@ -180,7 +180,7 @@ export default function JobsListing() {
               />
             ))}
         </div>
-        <div className="ml-6 flex-grow flex-shrink-0">
+        <div className="ml-6 w-full sticky top-4 mb-4 h-[96svh]">
           {selectedJob && <JobFullInfo job={selectedJob} />}
         </div>
       </div>
