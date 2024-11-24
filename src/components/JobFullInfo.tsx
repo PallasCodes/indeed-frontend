@@ -21,12 +21,12 @@ export default function JobFullInfo({ job }: { job: any }) {
           {USDollar.format(job.salaryMin)} a {USDollar.format(job.salaryMax)}{' '}
           por mes - {job.jobType}
         </p>
-        <div className="flex items-center">
+        <div className="flex items-center mt-4">
           <Btn label="Postularse ahora" className="btn-primary btn-lg" />
-          <Btn className="btn-text btn-lg">
+          <Btn className="btn-text btn-lg mx-4 !p-[9px]">
             <BookmarkIcon className="w-6 h-6" />
           </Btn>
-          <Btn className="btn-text btn-lg">
+          <Btn className="btn-text btn-lg !p-[9px]">
             <BookmarkIcon className="w-6 h-6" />
           </Btn>
         </div>
