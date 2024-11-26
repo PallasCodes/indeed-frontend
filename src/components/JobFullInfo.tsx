@@ -2,6 +2,7 @@ import { ArrowTopRightOnSquareIcon } from '@heroicons/react/16/solid'
 import { BookmarkIcon } from '@heroicons/react/24/outline'
 import { USDollar } from '../utils/numberToCurrency'
 import Btn from './base/Btn'
+import { formatLineBreaks } from '../utils/formatLineBreaks'
 
 export default function JobFullInfo({ job }: { job: any }) {
   return (
@@ -41,7 +42,7 @@ export default function JobFullInfo({ job }: { job: any }) {
         <h2 className="font-bold text-xl mt-4">
           Descripción completa del empleo
         </h2>
-        <p>{job.description}</p>
+        <p>{formatLineBreaks(job.description)}</p>
       </div>
     </div>
   )

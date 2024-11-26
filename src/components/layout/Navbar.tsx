@@ -46,6 +46,7 @@ export default function Navbar() {
       )}
       {user && (
         <div className="flex">
+          <Link to="/post-job">Publicar empleo</Link>
           <button
             onClick={logout}
             className="text-primary font-bold text-sm mr-8"

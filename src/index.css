@@ -48,6 +48,10 @@ body {
 }
 
 /* FORM */
+.form-control {
+  @apply block;
+}
+
 .form-field {
   @apply w-full py-[9px] px-3 border border-[#2d2d2d] rounded-lg mt-2 active:border-primary;
 }
@@ -62,4 +66,20 @@ body {
 
 .form-control .helper {
   @apply text-sm;
+}
+
+.form-control div.css-13cymwt-control {
+  @apply border-none;
+}
+
+.form-control div.css-13cymwt-control input {
+  @apply border-none outline-none;
+}
+
+.form-control div.css-13cymwt-control {
+  @apply border-none;
+}
+
+.form-control span.css-1u9des2-indicatorSeparator {
+  display: none;
 }
