@@ -7,6 +7,7 @@ import {
 } from '@heroicons/react/24/solid'
 import { JobSeeker as JobSeekerProfile } from '../../types/jobSeeker.interface'
 import cvIcon from '../../assets/cvIcon.svg'
+import { Link } from 'react-router-dom'
 
 export default function JobSeeker({ profile }: { profile: JobSeekerProfile }) {
   const configMenu = [
@@ -64,9 +65,9 @@ export default function JobSeeker({ profile }: { profile: JobSeekerProfile }) {
             <span>{profile.user.location}</span>
           </div>
         </div>
-        <button>
+        <Link to="/update-profile">
           <ChevronRightIcon className="w-5 h-5 text -gray-700" />
-        </button>
+        </Link>
       </div>
       <div>
         <h3 className="font-bold text-xl mt-7">CV</h3>

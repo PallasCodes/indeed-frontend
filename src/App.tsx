@@ -11,6 +11,7 @@ import { useAuth } from './hooks/useAuth'
 import Profile from './views/profile/Profile'
 import { UserRoles } from './types/userRoles.enum'
 import { PostJob } from './views/PostJob'
+import { UpdateJobSeekerProfile } from './views/updateProfile/UpdateJobSeekerProfile'
 
 function App() {
   const { setAuthUser } = useAuth()
@@ -54,7 +55,9 @@ function App() {
               />
               <Route
                 path="/update-profile"
-                element={user ? <PostJob /> : <Navigate to="/" />}
+                element={
+                  user ? <UpdateJobSeekerProfile /> : <Navigate to="/" />
+                }
               />
             </Routes>
           </div>

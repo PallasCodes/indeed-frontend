@@ -167,7 +167,7 @@ export function PostJob() {
           </label>
           <Btn
             type="submit"
-            label="Publicar Vacante"
+            label="Publicar"
             className="btn-primary btn-full mt-5"
           />
         </form>
