@@ -7,4 +7,5 @@ export interface User {
   email: string
   location?: string
   role: UserRoles
+  profileCompleted?: boolean
 }

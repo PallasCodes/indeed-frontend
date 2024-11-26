@@ -4,6 +4,8 @@ import Btn from '../../components/base/Btn'
 import { useGetOwnProfile } from '../../hooks/useGetOwnProfile'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../store'
+import { apiRequest } from '../../api/apiRequest'
+import { useNavigate } from 'react-router-dom'
 
 export function UpdateJobSeekerProfile() {
   const [phoneNumber, setPhoneNumber] = useState('')
@@ -12,8 +14,10 @@ export function UpdateJobSeekerProfile() {
   const [lastName, setLastName] = useState('')
 
   const user = useSelector((state: RootState) => state.auth.user)
+  const navigate = useNavigate()
 
   const { data, error, loading } = useGetOwnProfile(user)
+  // TODO: add skeleton loader and error handling
 
   useEffect(() => {
     if (data) {
@@ -25,8 +29,24 @@ export function UpdateJobSeekerProfile() {
     }
   }, [data])
 
-  function handleSubmit(e: React.SyntheticEvent) {
+  async function handleSubmit(e: React.SyntheticEvent) {
     e.preventDefault()
+
+    const payload = {
+      name: name.trim(),
+      lastName: lastName.trim(),
+      location: location.trim(),
+      phoneNumber: phoneNumber.trim(),
+    }
+
+    const { error, message } = await apiRequest(
+      'PUT',
+      '/profiles/my-profile/job-seeker',
+      payload,
+    )
+
+    message?.display()
+    if (!error) navigate('/profile')
   }
 
   return (
