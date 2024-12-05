@@ -16,7 +16,7 @@ export function UpdateJobSeekerProfile() {
   const user = useSelector((state: RootState) => state.auth.user)
   const navigate = useNavigate()
 
-  const { data, error, loading } = useGetOwnProfile(user)
+  const { data } = useGetOwnProfile(user)
   // TODO: add skeleton loader and error handling
 
   useEffect(() => {

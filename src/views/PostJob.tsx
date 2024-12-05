@@ -8,9 +8,9 @@ import { apiRequest } from '../api/apiRequest'
 export function PostJob() {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
-  const [jobType, setJobType] = useState()
+  const [jobType, setJobType] = useState<any>()
   const [location, setLocation] = useState('')
-  const [jobModality, setJobModality] = useState()
+  const [jobModality, setJobModality] = useState<any>()
   const [appDeadline, setAppDeadline] = useState('')
   const [salaryMin, setSalaryMin] = useState(0)
   const [salaryMax, setSalaryMax] = useState(0)
@@ -35,15 +35,15 @@ export function PostJob() {
     const payload = {
       title,
       description,
-      jobType: jobType.value, // TODO: fix this
+      jobType: jobType?.value, // TODO: fix this
       location,
-      jobModality: jobModality.value,
+      jobModality: jobModality?.value,
       appDeadline,
       salaryMin,
       salaryMax,
     }
 
-    const { data, error, message } = await apiRequest('POST', '/jobs', payload)
+    const { error, message } = await apiRequest('POST', '/jobs', payload)
 
     // TODO: fix bug, message doesn't exist
     message?.display()

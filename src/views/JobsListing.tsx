@@ -18,7 +18,7 @@ export default function JobsListing() {
   }
 
   async function handleJobCardClick(jobId: string) {
-    const { data, error } = await apiRequest('GET', `/jobs/${jobId}`)
+    const { data } = await apiRequest('GET', `/jobs/${jobId}`)
     setSelectedJob(data.job)
   }
 
