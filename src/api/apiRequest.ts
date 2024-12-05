@@ -51,7 +51,7 @@ export async function apiRequest(
 
     const { message, error, ...responseData } = axiosResponse.data
 
-    response.message = message
+    response.message = new Message(message)
     response.data = responseData
     response.error = error
 

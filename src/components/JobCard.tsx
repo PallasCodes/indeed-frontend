@@ -16,7 +16,7 @@ export default function JobCard({
     >
       <h2 className="text-[20px] font-bold">{job.title}</h2>
       <div className=" my-2">
-        {/* <div>{job.company}</div> */}
+        {/* <div>{job.employer.companyName}</div> */}
         <div>{job.location}</div>
       </div>
       <div>

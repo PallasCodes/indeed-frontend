@@ -9,6 +9,9 @@ import Footer from './components/layout/Footer'
 import Auth from './views/auth/Auth'
 import { useAuth } from './hooks/useAuth'
 import Profile from './views/profile/Profile'
+import { UserRoles } from './types/userRoles.enum'
+import { PostJob } from './views/PostJob'
+import { UpdateJobSeekerProfile } from './views/updateProfile/UpdateJobSeekerProfile'
 
 function App() {
   const { setAuthUser } = useAuth()
@@ -39,6 +42,22 @@ function App() {
               <Route
                 path="/profile"
                 element={user ? <Profile /> : <Navigate to="/auth" />}
+              />
+              <Route
+                path="/post-job"
+                element={
+                  user && user.role === UserRoles.EMPLOYER ? (
+                    <PostJob />
+                  ) : (
+                    <Navigate to="/" />
+                  )
+                }
+              />
+              <Route
+                path="/update-profile"
+                element={
+                  user ? <UpdateJobSeekerProfile /> : <Navigate to="/" />
+                }
               />
             </Routes>
           </div>

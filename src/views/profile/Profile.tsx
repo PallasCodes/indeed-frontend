@@ -25,7 +25,7 @@ export default function Profile() {
   }, [])
 
   return (
-    <div className="max-w-[520px] mx-auto py-6">
+    <div className="max-w-[570px] mx-auto py-6">
       {profile?.user.role === UserRoles.JOB_SEEKER && (
         <JobSeeker profile={profile as JobSeekerProfile} />
       )}
