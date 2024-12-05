@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import { apiRequest } from '../api/apiRequest'
-import { User } from '../types/User.interface'
+import { User } from '../types/user.interface'
 
 export const useGetOwnProfile = (user: User | null) => {
   const [_data, setData] = useState<any>(null)
