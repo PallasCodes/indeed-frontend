@@ -12,11 +12,19 @@ body {
 
 /* BTN */
 .btn {
-  @apply py-[5px] px-4 rounded-lg flex transition-colors;
+  @apply py-[5px] px-4 rounded-lg flex transition-colors font-bold;
+}
+
+.btn-lg {
+  @apply !py-[9px];
+}
+
+.btn-text {
+  @apply bg-grayIndeed;
 }
 
 .btn-primary {
-  @apply bg-primary text-white font-bold;
+  @apply bg-primary text-white;
 }
 
 .btn-primary:hover {
@@ -24,7 +32,7 @@ body {
 }
 
 .btn-white {
-  @apply border border-grayIndeed font-bold text-primary;
+  @apply border border-grayIndeed text-primary;
 }
 
 .btn-full {
@@ -40,6 +48,10 @@ body {
 }
 
 /* FORM */
+.form-control {
+  @apply block;
+}
+
 .form-field {
   @apply w-full py-[9px] px-3 border border-[#2d2d2d] rounded-lg mt-2 active:border-primary;
 }
@@ -54,4 +66,20 @@ body {
 
 .form-control .helper {
   @apply text-sm;
+}
+
+.form-control div.css-13cymwt-control {
+  @apply border-none;
+}
+
+.form-control div.css-13cymwt-control input {
+  @apply border-none outline-none;
+}
+
+.form-control div.css-13cymwt-control {
+  @apply border-none;
+}
+
+.form-control span.css-1u9des2-indicatorSeparator {
+  display: none;
 }
