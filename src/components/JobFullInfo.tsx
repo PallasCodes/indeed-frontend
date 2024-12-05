@@ -1,10 +1,23 @@
+import { useSelector } from 'react-redux'
+
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/16/solid'
 import { BookmarkIcon } from '@heroicons/react/24/outline'
+
 import { USDollar } from '../utils/numberToCurrency'
 import Btn from './base/Btn'
 import { formatLineBreaks } from '../utils/formatLineBreaks'
+import { RootState } from '../store'
 
 export default function JobFullInfo({ job }: { job: any }) {
+  const user = useSelector((state: RootState) => state.auth.user)
+
+  function handlePostulation() {
+    if (!user?.profileCompleted) {
+      window.alert('Debes registrarte primero')
+      return
+    }
+  }
+
   return (
     <div className="w-full border border-grayIndeed rounded-lg h-full overflow-y-scroll relative">
       <header className="pb-3 shadow px-4 sticky top-0 bg-white pt-10">
@@ -23,7 +36,11 @@ export default function JobFullInfo({ job }: { job: any }) {
           por mes - {job.jobType}
         </p>
         <div className="flex items-center mt-">
-          <Btn label="Postularse ahora" className="btn-primary btn-lg" />
+          <Btn
+            label="Postularse ahora"
+            className="btn-primary btn-lg"
+            onClick={handlePostulation}
+          />
           <Btn className="btn-text btn-lg mx-4 !p-[9px]">
             <BookmarkIcon className="w-6 h-6" />
           </Btn>
