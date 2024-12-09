@@ -55,19 +55,19 @@ export default function Signup() {
   }
 
   async function checkIfEmailIsRegistered(email: string): Promise<boolean> {
-    const {
-      data: emailIsRegistered,
-      error,
-      message,
-    } = await apiRequest('POST', '/auth/check-email-registered', {
-      email,
-    })
+    const { data, error, message } = await apiRequest(
+      'POST',
+      '/auth/check-email-registered',
+      {
+        email,
+      },
+    )
 
     if (error) {
       message?.display()
     }
 
-    return emailIsRegistered
+    return data.emailIsRegistered
   }
 
   return (
