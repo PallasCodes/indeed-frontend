@@ -12,10 +12,14 @@ import Profile from './views/profile/Profile'
 import { UserRoles } from './types/userRoles.enum'
 import { PostJob } from './views/PostJob'
 import { UpdateJobSeekerProfile } from './views/updateProfile/UpdateJobSeekerProfile'
+import { setAuthIsReady } from './store/slices/authSlice'
+import { useDispatch } from 'react-redux'
 
 function App() {
   const { setAuthUser } = useAuth()
   const user = useSelector((state: RootState) => state.auth.user)
+  const authIsReady = useSelector((state: RootState) => state.auth.authIsReady)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     let authUser = localStorage.getItem('user')
@@ -24,7 +28,13 @@ function App() {
       authUser = JSON.parse(authUser)
       setAuthUser(authUser)
     }
+
+    dispatch(setAuthIsReady(true))
   }, [])
+
+  if (!authIsReady) {
+    return <div>Loading...</div>
+  }
 
   return (
     <>
